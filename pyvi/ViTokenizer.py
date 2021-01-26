@@ -111,10 +111,14 @@ class ViTokenizer:
         return text, [token[0] for token in tokens]
 
     @staticmethod
-    def tokenize(str):
-        text, tmp = ViTokenizer.sylabelize(str)
-        if len(tmp) == 0:
-            return str
+    def tokenize(str, syllabelize=True):
+        if syllabelize:
+            text, tmp = ViTokenizer.sylabelize(str)
+            if len(tmp) == 0:
+                return str
+        else:
+            text = str
+            tmp = str.split(" ")
         labels = ViTokenizer.model.predict([ViTokenizer.sent2features(tmp, False)])
         output = tmp[0]
         for i in range(1, len(labels[0])):
