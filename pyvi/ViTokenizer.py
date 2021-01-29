@@ -111,8 +111,8 @@ class ViTokenizer:
         return text, [token[0] for token in tokens]
 
     @staticmethod
-    def tokenize(str, syllabelize=True):
-        if syllabelize:
+    def tokenize(str, sylabelize=True):
+        if sylabelize:
             text, tmp = ViTokenizer.sylabelize(str)
             if len(tmp) == 0:
                 return str
@@ -170,6 +170,6 @@ def spacy_tokenize(str):
     return ViTokenizer.spacy_tokenize(str)
 
 
-def tokenize(str):
-    return ViTokenizer.tokenize(str)
+def tokenize(str, sylabelize=True):
+    return ViTokenizer.tokenize(str, sylabelize)
 
